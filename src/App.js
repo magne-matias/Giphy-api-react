@@ -34,11 +34,12 @@ function App() {
 
     const apiCall = async () => {
       const res = await giphy.animate(text, {limit: 20})
-      console.log(res.data)
+      
       setResults(res.data)
     }
     
     apiCall()
+    //change error state back to false
     setText('')
     setErr(false)
 
@@ -50,6 +51,8 @@ function App() {
       <h3>Type text into the form and hit submit</h3>
       <input className='input-field' value={text} onChange={handleInput} />
       <button className='submit-btn' onClick={handleSubmit}>Submit</button>
+      <Error isError={err} text='need length longer than 0 for input'/>
+      {results && <TextList gifs={results}  />}
     </div>
   );
 }
